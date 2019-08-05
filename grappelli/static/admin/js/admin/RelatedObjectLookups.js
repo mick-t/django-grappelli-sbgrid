@@ -61,7 +61,7 @@
 
     function updateRelatedObjectLinks(triggeringLink) {
         var $this = $(triggeringLink);
-        var siblings = $this.parent().nextAll().find('.change-related, .delete-related');
+        var siblings = $this.nextAll('.change-related, .delete-related');
         if (!siblings.length) {
             return;
         }
@@ -104,8 +104,6 @@
     }
 
     function dismissChangeRelatedObjectPopup(win, objId, newRepr, newId) {
-        var name = windowname_to_id(win.name);
-        var elem = document.getElementById(name);
         var id = windowname_to_id(win.name).replace(/^edit_/, '');
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
         var selects = $(selectsSelector);
@@ -114,7 +112,7 @@
                 this.textContent = newRepr;
                 this.value = newId;
             }
-        }).trigger('change');
+        });
         // GRAPPELLI CUSTOM: element focus
         elem.focus();
         win.close();
@@ -184,7 +182,7 @@
         // GRAPPELLI CUSTOM
         /* triggering select means that update_lookup is triggered with
         generic autocompleted (which would empty the field) */
-        $('.grp-related-widget-tools').parent().children('.grp-related-widget').children('select:first-child').trigger('change');
+        // $('.related-widget-wrapper select').trigger('change');
         $('.related-lookup').click(function(e) {
             e.preventDefault();
             var event = $.Event('django:lookup-related');

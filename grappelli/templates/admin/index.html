@@ -40,9 +40,11 @@
                             {% endif %}
                             {% if model.add_url %}
                                 <ul class="grp-actions">
-                                    <li class="grp-icon grp-add-link">
-                                        <a href="{{ model.add_url }}" title="{% trans "Add" %}">&nbsp;</a>
-                                    </li>
+                                    {% if model.add_url %}
+                                        <li class="grp-icon grp-add-link">
+                                            <a href="{{ model.add_url }}" title="{% trans "Add" %}">&nbsp;</a>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             {% endif %}
                         </div>
